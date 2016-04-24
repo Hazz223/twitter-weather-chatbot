@@ -8,25 +8,25 @@ import org.springframework.stereotype.Component;
 import java.time.LocalTime;
 
 @Component
-public class WeatherShedulingImpl implements WeatherSheduling {
+public class WeatherSchedulingImpl implements WeatherScheduling {
 
     private TwitterWeatherNotifier twitterWeatherNotifier;
 
     @Autowired
-    public WeatherShedulingImpl(TwitterWeatherNotifier twitterWeatherNotifier) {
+    public WeatherSchedulingImpl(TwitterWeatherNotifier twitterWeatherNotifier) {
         this.twitterWeatherNotifier = twitterWeatherNotifier;
     }
 
     @Override
-    @Scheduled(cron = "30 7 * * * *")
+    @Scheduled(cron = "0 15 7 * * *")
     public void morningWeatherTweet() {
 
         System.out.println("Sending morning tweet");
-        this.twitterWeatherNotifier.notifyTimeForecast(LocalTime.of(10, 0));
+        this.twitterWeatherNotifier.notifyTimeForecast(LocalTime.of(9, 0));
     }
 
     @Override
-    @Scheduled(cron = "30 16 * * * *")
+    @Scheduled(cron = "0 0 16 * * *")
     public void afternoonTweet() {
 
         System.out.println("Sending afternoon tweet");

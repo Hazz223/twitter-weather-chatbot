@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 import javax.annotation.PostConstruct;
+import java.time.LocalTime;
 
 @SpringBootApplication
 @EnableScheduling
@@ -18,6 +19,9 @@ public class TwitterWeatherChatBotApplication {
 	@PostConstruct
 	public void startUp(){
 		System.out.println("Application has started.");
+
+		System.out.println("Current time: " + LocalTime.now().toString());
+
 	}
 
 }
