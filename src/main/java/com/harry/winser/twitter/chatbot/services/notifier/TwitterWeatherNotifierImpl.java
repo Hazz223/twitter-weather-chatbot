@@ -27,28 +27,12 @@ public class TwitterWeatherNotifierImpl implements TwitterWeatherNotifier {
         this.weatherMessageFormatter = weatherMessageFormatter;
     }
 
+    public void notifyTimeForecast(LocalTime time) {
 
-    @Override
-    public void notifyTwitterUsers() {
+        ForecastWeatherData forecast = this.weatherService.getTodaysForecastByTime(time);
 
-    }
-
-    @Override
-    public void notifyAfternoonWeather() {
-
-        LocalTime time = LocalTime.of(18, 0);
-
-        ForecastWeatherData eveningForecast = this.weatherService.getTodaysForecastByTime(time);
-
-        Message message = this.weatherMessageFormatter.formatForecastWeather(eveningForecast, time);
+        Message message = this.weatherMessageFormatter.formatForecastWeather(forecast, time);
 
         this.twitterService.sendDirectMessages(Lists.newArrayList("Hazz223"), message);
-
-    }
-
-    @PostConstruct
-    public void sendDirectMessage(){
-
-        this.notifyAfternoonWeather();
     }
 }
