@@ -25,14 +25,6 @@ public class WeatherServiceTest {
     public void shouldReturnCurrentWeatherForLondon(){
 
 
-
-        Map<LocalTime, ForecastWeatherData> todaysWeather = weatherService.getTodaysWeather();
-
-        assertThat(todaysWeather.size()).isGreaterThan(0);
-
-        LocalTime localTime = LocalTime.of(6, 0);
-        assertThat(todaysWeather.get(localTime)).isInstanceOf(ForecastWeatherData.class);
-
     }
 
     @Test
@@ -41,9 +33,7 @@ public class WeatherServiceTest {
         ForecastWeatherData weatherByDateAndTime = this.weatherService.getTodaysForecastByTime(LocalTime.of(20, 0));
 
         assertThat(weatherByDateAndTime).isInstanceOf(ForecastWeatherData.class);
-        LocalTime resultTime = new Date(weatherByDateAndTime.getDateTime() * 1000).toInstant().atZone(ZoneId.of("GMT")).toLocalTime();
 
-        assertThat(resultTime).isEqualTo(LocalTime.of(21,0));
     }
 
 }
